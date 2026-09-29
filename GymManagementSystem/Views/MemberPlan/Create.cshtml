@@ -1,0 +1,50 @@
+﻿@model GymManagementSystem.BLL.ViewModels.Memberships.MembershipCreateViewModel
+
+@{
+    ViewData["Title"] = "Assign Membership";
+}
+
+<div class="container my-5" style="max-width: 600px;">
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+        <h3 class="fw-bolder text-primary-color mb-4 text-center">Assign Membership Plan</h3>
+
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="MemberId" class="form-label fw-bold text-black-alternative">Select Member</label>
+                <select asp-for="MemberId" asp-items="Model.Members" class="form-select rounded-3 py-2">
+                    <option value="">-- Choose Member --</option>
+                </select>
+                <span asp-validation-for="MemberId" class="text-danger fs-14"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PlanId" class="form-label fw-bold text-black-alternative">Select Plan</label>
+                <select asp-for="PlanId" asp-items="Model.Plans" class="form-select rounded-3 py-2">
+                    <option value="">-- Choose Plan --</option>
+                </select>
+                <span asp-validation-for="PlanId" class="text-danger fs-14"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="StartDate" class="form-label fw-bold text-black-alternative">Start Date</label>
+                <input asp-for="StartDate" type="date" class="form-control rounded-3 py-2" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="StartDate" class="text-danger fs-14"></span>
+            </div>
+
+            <div class="d-flex gap-3 mt-4">
+                <button type="submit" class="btn bg-primary-color text-white rounded-pill py-2 flex-grow-1 fw-bold">
+                    Confirm Assignment
+                </button>
+                <a asp-action="Index" class="btn border-secondary text-secondary rounded-pill py-2 px-4">
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
